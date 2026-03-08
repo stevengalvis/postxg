@@ -1,28 +1,28 @@
-import os
-import requests
-from dotenv import load_dotenv
+import sys
+from skills.get_grok_news import get_grok_news
+from skills.get_yt_transcripts import get_yt_transcripts
+from skills.generate_brief import generate_brief
 
-load_dotenv()
+def run(team: str, video_ids: list):
+    print(f"\n>>> Fetching Grok news for {team}...")
+    news = get_grok_news(team)
+    print("Done.\n")
 
-api_key = os.getenv("OPENAI_API_KEY")
+    print(f">>> Fetching YouTube transcripts...")
+    transcripts = get_yt_transcripts(video_ids)
+    print("Done.\n")
 
-url = "https://api.openai.com/v1/chat/completions"
+    print(f">>> Generating video brief...")
+    brief = generate_brief(team, news, transcripts)
+    print("Done.\n")
 
-headers = {
-    "Authorization": f"Bearer {api_key}",
-    "Content-Type": "application/json"
-}
+    print("=" * 60)
+    print("YOUR VIDEO BRIEF:")
+    print("=" * 60)
+    print(brief)
 
-payload = {
-    "model": "gpt-4o-mini",
-    "messages": [
-        {
-            "role": "user",
-            "content": "In one sentence, why was Chelsea vs Wrexham controversial last night?"
-        }
-    ]
-}
-
-response = requests.post(url, headers=headers, json=payload)
-data = response.json()
-print(data['choices'][0]['message']['content'])
+if __name__ == "__main__":
+    run(
+        team="Chelsea FC",
+        video_ids=["8-_Pz0-LffA"]
+    )
