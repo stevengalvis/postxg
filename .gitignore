@@ -2,4 +2,4 @@ Type:
 ```
 .env
 __pycache__
-*.pyc
+*.pycvenv
