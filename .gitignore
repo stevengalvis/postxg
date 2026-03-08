@@ -1,5 +1,4 @@
-Type:
-```
 .env
 __pycache__
-*.pycvenv
+*.pyc
+venv/
