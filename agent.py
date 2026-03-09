@@ -23,6 +23,6 @@ def run(team: str, video_ids: list):
 
 if __name__ == "__main__":
     run(
-        team="Chelsea FC",
-        video_ids=["8-_Pz0-LffA"]
+        team=sys.argv[1],
+        video_ids=sys.argv[2:]
     )
