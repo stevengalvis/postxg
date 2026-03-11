@@ -1,16 +1,36 @@
 import os
-import sys
+import re
+from datetime import date
 from skills.get_grok_news import get_grok_news
 from skills.get_yt_transcripts import get_yt_transcripts
+from skills.extract import extract_research
 from skills.generate_brief import generate_brief
 
 RESEARCH_FILE = "research/latest.txt"
+EXTRACTED_FILE = "research/extracted.txt"
 
-def save_to_research(label: str, content: str):
+def extract_video_id(input_str: str) -> str:
+    input_str = input_str.strip()
+    if "youtube.com/watch" in input_str:
+        match = re.search(r'v=([a-zA-Z0-9_-]{11})', input_str)
+        if match:
+            return match.group(1)
+    if "youtu.be/" in input_str:
+        match = re.search(r'youtu\.be/([a-zA-Z0-9_-]{11})', input_str)
+        if match:
+            return match.group(1)
+    if "youtube.com/shorts/" in input_str:
+        match = re.search(r'shorts/([a-zA-Z0-9_-]{11})', input_str)
+        if match:
+            return match.group(1)
+    return input_str
+
+def save_to_research(label: str, content: str, source_type: str = "UNKNOWN"):
     os.makedirs("research", exist_ok=True)
     with open(RESEARCH_FILE, "a", encoding="utf-8") as f:
         f.write(f"\n{'═' * 40}\n")
-        f.write(f"{label}\n")
+        f.write(f"SOURCE: {source_type}\n")
+        f.write(f"LABEL: {label}\n")
         f.write(f"{'═' * 40}\n")
         f.write(content)
         f.write("\n")
@@ -21,85 +41,266 @@ def read_research() -> str:
     with open(RESEARCH_FILE, "r", encoding="utf-8") as f:
         return f.read()
 
-def reset_research():
+def get_research_header() -> dict:
+    if not os.path.exists(RESEARCH_FILE):
+        return {}
+    with open(RESEARCH_FILE, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+    header = {}
+    for line in lines[:5]:
+        if line.startswith("TOPIC:"):
+            header["topic"] = line.replace("TOPIC:", "").strip()
+        if line.startswith("DATE:"):
+            header["date"] = line.replace("DATE:", "").strip()
+    return header
+
+def set_research_header(topic: str):
+    os.makedirs("research", exist_ok=True)
+    existing = read_research()
+    with open(RESEARCH_FILE, "w", encoding="utf-8") as f:
+        f.write(f"TOPIC: {topic}\n")
+        f.write(f"DATE: {date.today()}\n")
+        f.write(existing)
+
+def clear_research():
     if os.path.exists(RESEARCH_FILE):
         os.remove(RESEARCH_FILE)
+    if os.path.exists(EXTRACTED_FILE):
+        os.remove(EXTRACTED_FILE)
 
-def run():
-    print("\n🎙️  PostXG — Video Research & Script Generator\n")
+def list_sources() -> list:
+    sources = []
+    if not os.path.exists(RESEARCH_FILE):
+        return sources
+    with open(RESEARCH_FILE, "r", encoding="utf-8") as f:
+        content = f.read()
+    blocks = content.split("═" * 40)
+    for block in blocks:
+        lines = block.strip().split("\n")
+        source_type = ""
+        label = ""
+        for line in lines:
+            if line.startswith("SOURCE:"):
+                source_type = line.replace("SOURCE:", "").strip()
+            if line.startswith("LABEL:"):
+                label = line.replace("LABEL:", "").strip()
+        if source_type and label:
+            sources.append({"type": source_type, "label": label, "block": block})
+    return sources
 
-    # Step 1 — Research topic
-    topic = input("What do you want to research? (press enter to skip Grok)\n> ").strip()
+def remove_sources(indices: list):
+    sources = list_sources()
+    to_remove = [sources[i] for i in indices if i < len(sources)]
+    with open(RESEARCH_FILE, "r", encoding="utf-8") as f:
+        content = f.read()
+    for source in to_remove:
+        block_with_dividers = "═" * 40 + "\n" + source["block"].strip() + "\n"
+        content = content.replace(block_with_dividers, "")
+    with open(RESEARCH_FILE, "w", encoding="utf-8") as f:
+        f.write(content)
+
+def collect_grok(topic: str, appending: bool = False):
+    if not appending:
+        clear_research()
+        set_research_header(topic)
+    existing = read_research()
+    print("\n>>> Calling Grok...")
+    result = get_grok_news(topic, context=existing if appending else None)
+    print("\n" + "═" * 40)
+    print("GROK RESULTS")
+    print("═" * 40)
+    print(result)
+    save_to_research(f"Grok search — {topic}", result, "GROK_SEARCH")
+
+    while True:
+        choice = input("\nHappy with Grok research?\n[1] Yes continue\n[2] Search again\n> ").strip().lower()
+        if choice in ["1", "yes"]:
+            break
+        elif choice in ["2", "no"]:
+            follow_up = input("\nWhat else do you want to search?\n> ").strip()
+            if follow_up:
+                existing = read_research()
+                print("\n>>> Calling Grok again...")
+                result = get_grok_news(follow_up, context=existing)
+                print("\n" + "═" * 40)
+                print("GROK FOLLOW UP")
+                print("═" * 40)
+                print(result)
+                save_to_research(f"Grok search — {follow_up}", result, "GROK_SEARCH")
+
+def collect_transcripts():
+    video_input = input("\nAdd YouTube video URLs or IDs? (paste separated by spaces or press enter to skip)\n> ").strip()
+    if not video_input:
+        return
+    raw_inputs = video_input.split()
+    video_ids = [extract_video_id(v) for v in raw_inputs]
+    print("\n>>> Pulling transcripts...")
+    for vid in video_ids:
+        try:
+            transcript = get_yt_transcripts([vid])
+            if transcript and len(transcript) > 100:
+                print(f"✓ Got transcript for {vid}")
+                save_to_research(f"YouTube transcript — {vid}", transcript[:8000], "YOUTUBE_TRANSCRIPT")
+            else:
+                print(f"✗ No transcript found for {vid}")
+        except Exception as e:
+            print(f"✗ Failed for {vid}: {e}")
+
+def collect_manual():
+    while True:
+        manual = input("\nAdd article, tweet, Reddit post or other content? (y/n)\n> ").strip().lower()
+        if manual not in ["y", "yes"]:
+            break
+
+        print("\nWhat type of source is this?")
+        print("[1] Article (journalism, blog)")
+        print("[2] Tweet or tweet thread")
+        print("[3] Reddit thread")
+        print("[4] Press conference transcript")
+        print("[5] Other")
+        type_choice = input("> ").strip()
+
+        type_map = {
+            "1": "MANUAL_ARTICLE",
+            "2": "MANUAL_TWEET",
+            "3": "MANUAL_REDDIT",
+            "4": "MANUAL_PRESSER",
+            "5": "MANUAL_OTHER"
+        }
+        source_type = type_map.get(type_choice, "MANUAL_OTHER")
+        label = input("\nGive it a short label (e.g. Athletic — Laporta interview)\n> ").strip()
+
+        print("\nPaste your content below. Type END on a new line when done:")
+        lines = []
+        while True:
+            line = input()
+            if line.strip().upper() == "END":
+                break
+            lines.append(line)
+        content = "\n".join(lines)
+
+        if content:
+            save_to_research(label, content, source_type)
+            print(f"✓ Saved: {label}")
+
+def collect_research(appending: bool = False):
+    topic = input("\nWhat do you want to research? (press enter to skip Grok)\n> ").strip()
 
     if topic:
-        reset_research()
-        print("\n>>> Calling Grok...")
-        result = get_grok_news(topic)
-        print("\n" + "═" * 40)
-        print("GROK RESULTS")
-        print("═" * 40)
-        print(result)
-        save_to_research(f"GROK SEARCH — {topic}", result)
-
-        # Allow multiple Grok searches
-        while True:
-            choice = input("\nHappy with research?\n[1] Yes continue\n[2] Search again\n> ").strip()
-            if choice == "1":
-                break
-            elif choice == "2":
-                follow_up = input("\nWhat else do you want to search?\n> ").strip()
-                if follow_up:
-                    existing = read_research()
-                    print("\n>>> Calling Grok again...")
-                    result = get_grok_news(follow_up, context=existing)
-                    print("\n" + "═" * 40)
-                    print("GROK FOLLOW UP")
-                    print("═" * 40)
-                    print(result)
-                    save_to_research(f"GROK SEARCH 2 — {follow_up}", result)
+        collect_grok(topic, appending)
     else:
         print("Skipping Grok.")
-        if not os.path.exists(RESEARCH_FILE):
-            reset_research()
 
-    # Step 2 — YouTube transcripts
-    video_input = input("\nAdd YouTube video IDs? (paste IDs separated by spaces or press enter to skip)\n> ").strip()
-    if video_input:
-        video_ids = video_input.split()
-        print("\n>>> Pulling transcripts...")
-        for vid in video_ids:
-            transcript = get_yt_transcripts([vid])
-            print(f"✓ Got transcript for {vid}")
-            save_to_research(f"YOUTUBE TRANSCRIPT — {vid}", transcript)
+    collect_transcripts()
+    collect_manual()
 
-    # Step 3 — Write direction
-    research = read_research()
-    if not research:
-        print("\nNo research found. Please run a search or add video IDs first.")
+def review_extracted():
+    while True:
+        research = read_research()
+        if not research:
+            print("\nNo research found.")
+            return False
+
+        print("\n>>> Extracting research...")
+        extracted = extract_research(research)
+
+        with open(EXTRACTED_FILE, "w", encoding="utf-8") as f:
+            f.write(extracted)
+
+        print("\n" + "═" * 60)
+        print("EXTRACTED RESEARCH SUMMARY")
+        print("═" * 60)
+        print(extracted)
+
+        print("\nWhat do you want to do?")
+        print("[1] Happy — write the script")
+        print("[2] Add more research")
+        print("[3] Remove a source")
+        print("[4] Start over")
+        choice = input("> ").strip().lower()
+
+        if choice in ["1", "yes", "happy"]:
+            return True
+        elif choice == "2":
+            collect_research(appending=True)
+        elif choice == "3":
+            sources = list_sources()
+            if not sources:
+                print("No sources found.")
+                continue
+            print("\nCurrent sources:")
+            for i, s in enumerate(sources):
+                print(f"[{i+1}] {s['type']} — {s['label']}")
+            to_remove = input("\nWhich sources to remove? (enter numbers separated by spaces)\n> ").strip()
+            indices = [int(x) - 1 for x in to_remove.split() if x.isdigit()]
+            if indices:
+                remove_sources(indices)
+                print("Removed. Re-extracting...")
+        elif choice == "4":
+            clear_research()
+            print("Research cleared.")
+            return False
+
+def write_output(topic: str):
+    if not os.path.exists(EXTRACTED_FILE):
+        print("No extracted research found.")
         return
 
-    print("\n" + "═" * 40)
-    print("RESEARCH SAVED — ready to write")
-    print("═" * 40)
+    with open(EXTRACTED_FILE, "r", encoding="utf-8") as f:
+        extracted = f.read()
 
     direction = input("\nWhat do you want to say about this?\n> ").strip()
     if not direction:
-        print("No direction given. Exiting.")
+        print("No direction given.")
         return
 
-    format_choice = input("\nLong form, short, or both?\n[1] Long form\n[2] Short\n[3] Both\n> ").strip()
-    fmt = "long"
-    if format_choice == "2":
-        fmt = "short"
-    elif format_choice == "3":
-        fmt = "both"
+    fmt_input = input("\nLong form, short, or both?\n[1] Long form\n[2] Short\n[3] Both\n> ").strip().lower()
+    fmt_map = {
+        "1": "long", "long": "long", "long form": "long",
+        "2": "short", "short": "short",
+        "3": "both", "both": "both"
+    }
+    fmt = fmt_map.get(fmt_input, "long")
 
     print("\n>>> Writing your script...")
-    output = generate_brief(research, direction, fmt)
+    output = generate_brief(extracted, direction, fmt, topic, fmt)
 
     print("\n" + "═" * 60)
     print(output)
     print("═" * 60)
+
+def run():
+    print("\n🎙️  PostXG — Video Research & Script Generator\n")
+
+    header = get_research_header()
+
+    if header.get("topic"):
+        print(f"Active research: \"{header['topic']}\" (saved {header.get('date', 'unknown')})")
+        print("\n[1] Continue this research")
+        print("[2] Start new topic")
+        choice = input("> ").strip().lower()
+
+        if choice in ["2", "new"]:
+            clear_research()
+            collect_research(appending=False)
+        else:
+            collect_research(appending=True)
+    else:
+        collect_research(appending=False)
+
+    research = read_research()
+    if not research:
+        print("\nNo research collected. Exiting.")
+        return
+
+    happy = review_extracted()
+    if not happy:
+        run()
+        return
+
+    header = get_research_header()
+    topic = header.get("topic", "football video")
+    write_output(topic)
 
 if __name__ == "__main__":
     run()

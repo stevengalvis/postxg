@@ -1,17 +1,16 @@
 import requests
 import os
 from dotenv import load_dotenv
-
 load_dotenv()
 
 GROK_API_KEY = os.getenv("GROK_API_KEY")
 
-def get_grok_news(team: str) -> str:
-    """
-    Fetches latest football news and X/Twitter reactions via Grok API.
-    Use this skill to get real-time transfer news and fan reactions.
-    Pass a team name to get the latest news about that team.
-    """
+def get_grok_news(prompt: str, context: str = None) -> str:
+    if context:
+        full_prompt = f"Previous research already collected:\n{context}\n\nNew search request: {prompt}\n\nBuild on the previous research. Do not repeat what was already found."
+    else:
+        full_prompt = prompt
+
     response = requests.post(
         "https://api.x.ai/v1/responses",
         headers={
@@ -24,7 +23,7 @@ def get_grok_news(team: str) -> str:
             "input": [
                 {
                     "role": "user",
-                    "content": f"Latest news, transfer rumours and fan reactions about {team} in the last 48 hours?"
+                    "content": full_prompt
                 }
             ]
         }
@@ -39,5 +38,5 @@ def get_grok_news(team: str) -> str:
     return "No results found"
 
 if __name__ == "__main__":
-    result = get_grok_news("Chelsea FC")
+    result = get_grok_news("Chelsea vs PSG Champions League latest news and fan reactions")
     print(result)

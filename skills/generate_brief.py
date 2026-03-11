@@ -11,7 +11,7 @@ You are writing for a football YouTube channel focused on football narratives an
 The channel explains what fans, pundits, and the media are getting wrong about major football stories.
 The tone should feel like a smart football fan calmly explaining something most people are misunderstanding.
 Do NOT write like a sports journalist or a hype commentator.
-Write like someone explaining football clearly to other fans.
+Write like someone explaining football clearly to other fans in a pub.
 
 AUDIENCE:
 - 86% male, ages 25-44, US and UK based
@@ -23,7 +23,6 @@ CONTENT FOCUS:
 - Premier League, Champions League, major clubs and superstar players
 - Big football debates and narratives fans are arguing about
 - Videos built around one clear argument or question
-- Examples: "Chelsea spent £1.5 billion for this?" / "What everyone gets wrong about Manchester United"
 
 CHANNEL ANGLE:
 Each video should answer one clear question:
@@ -35,7 +34,7 @@ Avoid match recaps. Avoid generic commentary. Each video should feel like a clea
 TONE:
 - Confident, analytical, conversational, slightly provocative
 - NOT screaming fan tone, NOT exaggerated hype, NOT overly technical tactical language
-- Smart football conversation
+- Smart football conversation — like a fan explaining it to another fan
 
 STYLE RULES:
 - Write for spoken delivery
@@ -43,7 +42,14 @@ STYLE RULES:
 - Never use: "In today's video", "Let's talk about", "Welcome back"
 - Just start with the argument
 - Never use em dashes anywhere in any output
-- Never use: "ladies and gentlemen", "color me skeptical", "quite the", "classic X", "circus act"
+- Never use: "ladies and gentlemen", "color me skeptical", "quite the", "classic X", "circus act", "stunning", "psychological damage", "unprecedented", "indefensible", "brutality"
+- Sound like a fan talking in a pub not a journalist writing a column
+
+ACCURACY RULES:
+- Never invent or inflate statistics or facts
+- Only use exact figures from the research provided
+- If uncertain about a number do not include it
+- If a fact is not in the research do not make it up
 
 VOICE RHYTHM — learn the pattern, never copy these exact lines:
 - "He built his whole campaign around this. Then did the opposite."
@@ -59,14 +65,20 @@ YOU ARE WRITING A YOUTUBE SHORT.
 SHORTS RULES:
 - Focus on one strong football point, one stat, or one argument
 - 20 seconds when read aloud at natural pace
-- Script must be 40 to 45 words. Not more. Not less.
-- Strong hook first line
-- One or two facts in the middle
-- Script ends before the closing question
+- Script must be 40 to 45 words. Count every word. Do not exceed 45 words.
+- Break script into individual lines for on camera reading
+- Each line is one breath or one beat
+- Blank lines between sections are natural pauses
 
-SCRIPT LENGTH REFERENCE — this is the rhythm and length you are targeting. Never copy this example, it is only here to show you what 45 words feels like:
-"United have not suddenly become bad. They were always this team. Ten Hag papered over the cracks for two seasons. Now Amorim has the same squad and no excuses left. The rebuild is going to take longer than anyone wants to admit."
-That is 45 words. Every script must match that length exactly using the actual research topic.
+SCRIPT LENGTH REFERENCE — rhythm and length only, never copy this example:
+"United have not suddenly become bad.
+They were always this team.
+
+Ten Hag papered over the cracks for two seasons.
+Now Amorim has the same squad and no excuses left.
+
+The rebuild is going to take longer than anyone wants to admit."
+That is 45 words broken into lines. Match that length and format exactly using the actual research topic.
 
 TITLE RULES:
 - Maximum 6 words. Count every word. If it is 7 or more words it is wrong.
@@ -78,33 +90,38 @@ DESCRIPTION RULES:
 - Conversational, no em dashes
 - Include key names for search
 - End with a question
-- Do not summarize every detail, just the core story and the question
 
 OUTPUT STRUCTURE — follow exactly:
 
-TITLES (ranked)
-1. [title] — [one sentence why this works]
-2. [title] — [one sentence why this works]
-3. [title] — [one sentence why this works]
-4. [title] — [one sentence why this works]
-5. [title] — [one sentence why this works]
+RECOMMENDED TITLE
+[best title — max 6 words]
 
-HOOKS (ranked)
-1. [hook] — [one sentence why this works]
-2. [hook] — [one sentence why this works]
-3. [hook] — [one sentence why this works]
-4. [hook] — [one sentence why this works]
-5. [hook] — [one sentence why this works]
+ALTERNATIVE TITLES
+1. [title]
+2. [title]
+
+RECOMMENDED HOOK
+[best opening line]
+
+ALTERNATIVE HOOKS
+1. [hook]
+2. [hook]
 
 SCRIPT
-[40 to 45 words exactly. Count every word before outputting. Use the research topic not the example.]
+[40 to 45 words. Broken into lines. Count every word before outputting.]
+Word count: [X]
 
-CLOSING QUESTIONS (ranked)
-1. [question] — [one sentence why this drives comments]
-2. [question] — [one sentence why this drives comments]
-3. [question] — [one sentence why this drives comments]
-4. [question] — [one sentence why this drives comments]
-5. [question] — [one sentence why this drives comments]
+SHORT KEY POINTS
+1. [key point — no em dash, no explanation]
+2. [key point — no em dash, no explanation]
+3. [key point — no em dash, no explanation]
+
+RECOMMENDED CLOSING QUESTION
+[best question]
+
+ALTERNATIVE CLOSING QUESTIONS
+1. [question]
+2. [question]
 
 DESCRIPTION
 [2 sentences max. No em dashes. Ends with a question.]
@@ -139,61 +156,76 @@ DESCRIPTION RULES:
 - Conversational, no em dashes
 - Include key names for search
 - End with a question
-- Do not summarize every detail, just the core story and the question
+
+TALKING POINTS SOURCE ATTRIBUTION:
+- After each bullet point add the source in brackets
+- Example: Kinsky had 180 minutes experience before this match [Grok]
+- Sources: [Grok] [YouTube] [Manual]
+- Only use facts from the research provided
 
 OUTPUT STRUCTURE — follow exactly:
 
-TITLES (ranked)
-1. [title] — [one sentence why this works]
-2. [title] — [one sentence why this works]
-3. [title] — [one sentence why this works]
-4. [title] — [one sentence why this works]
-5. [title] — [one sentence why this works]
+RECOMMENDED TITLE
+[best title — max 6 words]
 
-HOOKS (ranked)
-1. [hook] — [one sentence why this works]
-2. [hook] — [one sentence why this works]
-3. [hook] — [one sentence why this works]
-4. [hook] — [one sentence why this works]
-5. [hook] — [one sentence why this works]
+ALTERNATIVE TITLES
+1. [title]
+2. [title]
+
+RECOMMENDED HOOK
+[best opening line]
+
+ALTERNATIVE HOOKS
+1. [hook]
+2. [hook]
+
+QUICK REFERENCE — READ FROM THIS ON CAMERA
+KEY STATS:
+[bullet list of most important stats and facts from research]
+
+TOP TWEETS TO MENTION:
+[bullet list of top tweets with handle and view/like count]
+
+KEY QUOTES:
+[bullet list of key quotes with attribution]
 
 TALKING POINTS (4-5 points for a 6-7 minute video)
 1. [Point Title]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
 
 2. [Point Title]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
 
 3. [Point Title]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
 
 4. [Point Title]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
 
 5. [Point Title]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
-- [key fact or angle to talk about]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
+- [key fact or angle] [source]
 
-CLOSING QUESTIONS (ranked)
-1. [question] — [one sentence why this drives comments]
-2. [question] — [one sentence why this drives comments]
-3. [question] — [one sentence why this drives comments]
-4. [question] — [one sentence why this drives comments]
-5. [question] — [one sentence why this drives comments]
+RECOMMENDED CLOSING QUESTION
+[best question]
+
+ALTERNATIVE CLOSING QUESTIONS
+1. [question]
+2. [question]
 
 DESCRIPTION
 [2 sentences max. No em dashes. Ends with a question.]
@@ -209,7 +241,7 @@ def call_claude(system: str, user: str) -> str:
         },
         json={
             "model": "claude-opus-4-5",
-            "max_tokens": 4000,
+            "max_tokens": 6000,
             "system": system,
             "messages": [
                 {"role": "user", "content": user}
@@ -219,7 +251,7 @@ def call_claude(system: str, user: str) -> str:
     data = response.json()
     return data["content"][0]["text"]
 
-def generate_brief(research: str, direction: str, fmt: str) -> str:
+def generate_brief(research: str, direction: str, fmt: str, topic: str = "football video", format_label: str = "both") -> str:
     user_message = f"""
 RESEARCH:
 {research}
@@ -227,7 +259,7 @@ RESEARCH:
 CREATOR DIRECTION:
 {direction}
 
-Now write the output following the structure exactly. Use the research. Sound human. No em dashes anywhere.
+Now write the output following the structure exactly. Use only facts from the research. Sound human. No em dashes anywhere.
 """
 
     if fmt == "short":
@@ -252,7 +284,7 @@ Generate completely different ones for long form. Different angles, different wo
 SHORT FORM ALREADY USED:
 {short_output[:1000]}
 
-Now write the long form output following the structure exactly. Use the research. Sound human. No em dashes anywhere.
+Now write the long form output following the structure exactly. Use only facts from the research. Sound human. No em dashes anywhere.
 """
         long_output = call_claude(LONG_PROMPT, long_user_message)
 
@@ -272,7 +304,7 @@ LONG FORM
 """
 
 if __name__ == "__main__":
-    test_research = "Xavi revealed Messi's return to Barcelona was a done deal in 2023. Laporta blocked it over wage concerns. La Liga gave green light. Fans furious on X."
-    test_direction = "bash Laporta, strong hook for a short"
-    result = generate_brief(test_research, test_direction, "both")
+    test_research = "Tudor subbed Kinsky after 17 minutes vs Atletico. 5-2 loss. Kinsky cried walking off. Tudor gave no acknowledgment. Spurs one point above relegation."
+    test_direction = "go after Tudor, selection was the real crime not the substitution"
+    result = generate_brief(test_research, test_direction, "both", "Tudor Kinsky substitution", "both")
     print(result)
