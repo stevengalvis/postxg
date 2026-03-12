@@ -1,5 +1,8 @@
 import os
 import re
+import sys
+import signal
+import requests
 from datetime import date
 from skills.get_grok_news import get_grok_news
 from skills.get_yt_transcripts import get_yt_transcripts
@@ -8,6 +11,25 @@ from skills.generate_brief import generate_brief
 
 RESEARCH_FILE = "research/latest.txt"
 EXTRACTED_FILE = "research/extracted.txt"
+
+def handle_exit(sig, frame):
+    print("\n\nExiting PostXG.")
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, handle_exit)
+
+def get_video_title(video_id: str) -> str:
+    try:
+        url = f"https://www.youtube.com/oembed?url=https://youtube.com/watch?v={video_id}&format=json"
+        response = requests.get(url, timeout=5)
+        if response.status_code == 200:
+            data = response.json()
+            title = data.get("title", video_id)
+            author = data.get("author_name", "")
+            return f"{author} — {title}" if author else title
+    except Exception:
+        pass
+    return video_id
 
 def extract_video_id(input_str: str) -> str:
     input_str = input_str.strip()
@@ -139,8 +161,9 @@ def collect_transcripts():
         try:
             transcript = get_yt_transcripts([vid])
             if transcript and len(transcript) > 100:
-                print(f"✓ Got transcript for {vid}")
-                save_to_research(f"YouTube transcript — {vid}", transcript[:8000], "YOUTUBE_TRANSCRIPT")
+                title = get_video_title(vid)
+                print(f"✓ {title}")
+                save_to_research(f"YouTube — {title}", transcript[:10000], "YOUTUBE_TRANSCRIPT")
             else:
                 print(f"✗ No transcript found for {vid}")
         except Exception as e:
@@ -153,7 +176,7 @@ def collect_manual():
             break
 
         print("\nWhat type of source is this?")
-        print("[1] Article (journalism, blog)")
+        print("[1] Article")
         print("[2] Tweet or tweet thread")
         print("[3] Reddit thread")
         print("[4] Press conference transcript")
@@ -184,15 +207,32 @@ def collect_manual():
             print(f"✓ Saved: {label}")
 
 def collect_research(appending: bool = False):
+    print("\nTips for your Grok prompt:")
+    print("  All topics — top tweets ranked by engagement with exact likes views and replies, pundit reactions")
+    print("  Match only — xG, possession, shots on target, big chances, FotMob ratings, manager quotes, league position, VAR controversy")
     topic = input("\nWhat do you want to research? (press enter to skip Grok)\n> ").strip()
 
     if topic:
         collect_grok(topic, appending)
     else:
-        print("Skipping Grok.")
+        if not appending:
+            topic = input("\nWhat is this research about? (used as topic label)\n> ").strip()
+            if topic:
+                clear_research()
+                set_research_header(topic)
 
     collect_transcripts()
     collect_manual()
+
+def get_strongest_angle() -> str:
+    if not os.path.exists(EXTRACTED_FILE):
+        return ""
+    with open(EXTRACTED_FILE, "r", encoding="utf-8") as f:
+        content = f.read()
+    for line in content.split("\n"):
+        if line.startswith("Strongest angle:"):
+            return line.replace("Strongest angle:", "").strip()
+    return ""
 
 def review_extracted():
     while True:
@@ -213,7 +253,7 @@ def review_extracted():
         print(extracted)
 
         print("\nWhat do you want to do?")
-        print("[1] Happy — write the script")
+        print("[1] Happy — write the brief")
         print("[2] Add more research")
         print("[3] Remove a source")
         print("[4] Start over")
@@ -249,6 +289,8 @@ def write_output(topic: str):
     with open(EXTRACTED_FILE, "r", encoding="utf-8") as f:
         extracted = f.read()
 
+    strongest_angle = get_strongest_angle()
+
     direction = input("\nWhat do you want to say about this?\n> ").strip()
     if not direction:
         print("No direction given.")
@@ -262,15 +304,20 @@ def write_output(topic: str):
     }
     fmt = fmt_map.get(fmt_input, "long")
 
-    print("\n>>> Writing your script...")
-    output = generate_brief(extracted, direction, fmt, topic, fmt)
+    if strongest_angle:
+        full_direction = f"{direction}\n\nSTRONGEST ANGLE FROM RESEARCH: {strongest_angle}"
+    else:
+        full_direction = direction
+
+    print("\n>>> Generating your brief...")
+    output = generate_brief(extracted, full_direction, fmt, topic, fmt)
 
     print("\n" + "═" * 60)
     print(output)
     print("═" * 60)
 
 def run():
-    print("\n🎙️  PostXG — Video Research & Script Generator\n")
+    print("\n🎙️  PostXG — Video Research & Brief Generator\n")
 
     header = get_research_header()
 

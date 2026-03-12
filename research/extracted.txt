@@ -1,147 +1,164 @@
 ═══════════════════════
 TOPIC SUMMARY
 ═══════════════════════
-Chelsea lost 5-2 to PSG in the Champions League Round of 16 first leg at Parc des Princes, with goalkeeper Filip Jørgensen's critical error at 2-2 (74') triggering a 3-goal collapse in the final 20 minutes.
+Chelsea lost 5-2 to PSG in Champions League Round of 16 first leg after leading 2-2; Filip Jörgensen's 74th-minute pass interception directly triggered the collapse, and Liam Rosenior's late substitutions were heavily criticized.
 
 Emotional temperature: Angry
-Best format for this content: Both
-Reason: High engagement on social media with tactical debate available, but also requires deep manager/keeper analysis for long-form.
-Strongest available angle: Jørgensen's single error as the moment Chelsea's European tie died — but the real problem is deploying an inexperienced keeper in a hostile Champions League environment when you have better options available (manager decision, not just player mistake).
+Best format: Long
+Strongest angle: The contrast between Chelsea being the better team (higher xG, better chances) yet self-destructing through one goalkeeper error and naive tactical decisions against Europe's best pressing team—the complete opposite of Champions League away mentality.
 
 ═══════════════════════
 FROM GROK — TOP TWEETS
 ═══════════════════════
-1. @theberneese — "PSG 5-2 Chelsea... Real Madrid 3-0 Man City... Galatasaray 1-0 Liverpool" (graphic showing EPL humbled by European elite) — Likes: 2.8k | Replies: 204 | Views: 48k
-   Why it matters: Highest engagement on this match (204 replies) centers on the narrative that English football is being exposed at the elite level—this resonates with casual viewers.
+1. @FabrizioRomano — "🚨 Liam Rosenior: "We are very close to being an outstanding team". Even at 4-2, we were still right in it. The fifth goal, that's the painful one. It's something I have to really solve"." — Likes: 9,290 | Views: 597K | Replies: 877
 
-2. B/R Football — "PSG show why they're UCL champs with a 5-2 first-leg win over Chelsea 💪" — Likes: 5.8k | Replies: 92 | Views: 92k
-   Why it matters: Straight praise for PSG's dominance; largest viewership but smallest reply ratio suggests agreement rather than debate.
+2. @FabrizioRomano — "🚨 Lism Rosenior on Jorgensen: "Players sometimes make mistakes. Filip isn't the first one to make a mistake, that's part of football"." — Likes: 8,665 | Views: 440K | Replies: 785
 
-3. Ben Jacobs — "FT: PSG 5 Chelsea 2... But Filip Jorgensen's error at 2-2 allowing Vitinha to chip home changed the momentum." — Likes: 642 | Replies: 37 | Views: 35k
-   Why it matters: Most cited take pinpointing the exact turning point; Jørgensen's "hospital pass" at 74' is consensus narrative across X and French media.
+3. @CFCPys — "That goal is exactly what I don't like about Rosenior teams... STOP EXPOSING THE DEFENCE WHEN IT ISN'T GOOD!" (On PSG's 3rd goal). — Likes: 6,210 | Views: 268K | Replies: 256
 
-4. Ben Jacobs — "Vitinha... resulting from Filip Jorgensen's error. Chelsea keeper under minimal pressure passing the ball straight to Bradley Barcola." — Likes: 639 | Replies: 20 | Views: 55k
-   Why it matters: Clarifies the specific nature of the error—careless pass under no pressure—amplifying the "avoidable" angle.
+4. @FabrizioRomano — "🚨 Liam Rosenior on Chelsea XI leaked early... "I'm sure we'll get to the bottom of that... more worried about the end result"." — Likes: 6,607 | Views: 613K | Replies: 756
 
-5. @Mercado_Ingles — "El error de Filip Jorgensen que le está costando la derrota del Chelsea" (The Jørgensen error costing Chelsea the game) — Likes: 302 | Video engagement: 26k views
-   Why it matters: Spanish-language engagement shows this is a pan-European hot take, not isolated to English Twitter.
+5. @yung_pheelz01 — "This PSG team are resting this weekend again, I really pity Chelsea." — Likes: 8,604 | Views: 120K | Replies: 50
+
+6. @CFCJnR — "Who done it worse? Kinsky last night or Jorgensen tonight?" (Keeper error comparisons). — Likes: 965 | Views: 61K | Replies: 78
 
 ═══════════════════════
 FROM GROK — KEY QUOTES
 ═══════════════════════
-[Ben Jacobs, journalist] — "Filip Jorgensen's error at 2-2 allowing Vitinha to chip home changed the momentum"
+Liam Rosenior, Chelsea manager — "Myself I'm accountable... ask the team to play a certain way... It's a shame... they had 0.8xG but scored five."
 Credibility: High
 
-[Consensus on X across multiple accounts] — Jørgensen's "hospital pass" was the turning point that sparked PSG's 3-goal collapse in 20 minutes
-Credibility: High (corroborated by espn.com, fotmob.com match data)
+Liam Rosenior, Chelsea manager — "We don't blame for mistakes and don't make the same twice."
+Credibility: High
 
 ═══════════════════════
 FROM GROK — CONTROVERSY AND KEY MOMENTS
 ═══════════════════════
-1. **Jørgensen's 74th-minute error** — Goalkeeper played a careless pass under minimal pressure directly to Bradley Barcola; Vitinha then chipped him from the intercepted ball. Consensus: this single moment shifted momentum and is being framed as the "point of no return" for Chelsea's tie.
+1. Filip Jörgensen's pass interception (74') — His attempted pass out from the back was intercepted by Bradley Barcola, leading directly to Vitinha's 3-2 goal; this single error triggered Chelsea's complete collapse in the final 20 minutes.
 
-2. **Chelsea's 3-goal collapse in final 20 minutes (74'–90+4')** — After Jørgensen's error made it 3-2, PSG scored two more (Kvaratskhelia 86', 90+4') to seal 5-2. Fan debate: was this poor goalkeeper management by Renato Sanchez, or did Chelsea's inexperienced personnel simply fold under elite pressure?
+2. Rosenior's late substitutions (83') — Brought on Liam Delap and Romeo Lavia simultaneously while the game was still contested at 3-2; widely criticized as negative, with Delap (barely a Championship striker) replacing creative outlets Palmer and Pedro Neto.
+
+3. Kvaratskhelia's late double (86', 90'+4) — Scored twice in the final stages after Rosenior's subs destabilized Chelsea's shape, with the 5th goal coming in added time as Chelsea lost defensive structure chasing the game.
+
+4. Goalkeeper selection controversy — Rosenior started Jörgensen over Robert Sánchez despite Sánchez's strong recent form and direct kicking being crucial in Chelsea's Club World Cup win over PSG; decision backfired spectacularly.
 
 ═══════════════════════
 FROM GROK — STATS AND FACTS
 ═══════════════════════
-- **Possession**: PSG 58% – Chelsea 42% (PSG dominated ball)
-- **Shots (On Target)**: PSG 9 (8) – Chelsea 9 (4); PSG far more clinical with their chances
-- **Expected Goals (xG)**: PSG 0.87 – Chelsea 1.53; Chelsea created better chances but squandered them (4 big chances missed vs PSG's 3)
-- **Player Ratings (FotMob)**: Kvaratskhelia 8.9 (MOTM, brace); Enzo Fernández 8.6 (Chelsea's best); Jørgensen 2.9 (lowest on pitch)
-- **Goal Timeline**: Chelsea equalized twice (28', 57') but conceded 3 in final 20 minutes (74', 86', 90+4')
-- **Historical context**: Chelsea have not conceded 5 away from home in Europe since losing to Barcelona (3-1 away, then 2 more after extra time at Camp Nou in early 2010s)
+- Final Score: PSG 5-2 Chelsea
+- Possession: PSG 58%, Chelsea 42%
+- Shots (On Target): PSG 9 (8), Chelsea 9 (4)
+- xG: PSG 0.9, Chelsea 1.57
+- Corners: Chelsea 3, PSG 2
+- Yellow Cards: Chelsea 0, PSG 1
+- Goals conceded: Chelsea's worst European result since losing to Barcelona (3-1 at home, then lost 3-1 away in 2009 after extra time, with 2 more goals in extra time = 5 goals total across two legs)
+- FotMob Player Ratings: Kvaratskhelia 8.9 (2 goals), Jörgensen 3.4 (lowest Chelsea player), Enzo Fernández 8.6 (goal)
+- Jörgensen's FotMob rating of 3.4 is catastrophically low for any outfield player, let alone a goalkeeper in a major Champions League match
 
 ═══════════════════════
-FROM YOUTUBE — y5w3nTCeKZc
+FROM YOUTUBE — RORY JENNINGS — CHELSEA THREW IT AWAY! 🤬
 ═══════════════════════
-Hook they used: "What an absolute abject failure of a night. Chelsea are out of the European Cup. We are out of the European Cup. It is over."
-Hook strength: Strong — opening establishes emotional stakes and immediate conclusion (tie is finished) which matches fan sentiment and creates urgency for the video.
+Hook: "What an absolute abject failure of a night. Chelsea are out of the European Cup. We are out of the European Cup. It is over. There is no hope. There is no spirit. It is impossible for us to go through."
 
-Main argument: Chelsea were the better team for 60+ minutes but self-destructed through catastrophic individual errors (Jørgensen's pass) and disastrous tactical substitutions by Renato Sanchez (removing Cole Palmer and Pedro Neto, bringing on Liam Delap), transforming a winnable game into an exit.
+Hook strength: Strong — Opens with multiple emotional escalations and closes the door psychologically before explaining why, setting up the entire argument.
 
-Key point 1: "I felt like we were the best team. I felt like we deserved not only to be in contention, but I felt like we deserve to win the game" — Chelsea had higher xG (1.53 vs 0.87) and better chance creation, but execution failed.
+Main argument: Chelsea were the better team with higher xG, should have won 2-2, but self-destructed through one keeper error and then catastrophic substitutions that turned defeat into humiliation.
 
-Key point 2: "What is it? Goalkeepers playing for English clubs wearing orange, man. It's absolutely abysmal" — Direct reference to David de Gea's pre-match warning about deploying inexperienced goalkeepers (Jørgensen, mirroring Atlético Madrid's Kinsky) in hostile away Champions League atmospheres.
+Key point 1: "I felt like there was a genuine opportunity for us to win the game... Somehow, somehow we have managed to snatch defeat from the jaws of victory."
 
-Key point 3: Renato Sanchez substitutions criticized as "some of the worst decisions I think that you'll ever see" — removing Palmer and Pedro while bringing on Delap "who is barely a Championship striker" and "one of the worst signings Chelsea have ever made." This is framed as managerial negligence, not just player mistakes.
+Key point 2: On Rosenior's substitutions — "how you can justify taking off Palmer and Pedro at the same point with the game in the balance... You're bringing on Liam Dap who, let's face it, Liam Dilap is not a Champions League striker. He is barely a championship striker... one of the worst signings that Chelsea have ever made."
 
-Closing question they used: [Implicit] "How can we not progress when we were the better team?" and "How has Renato Sanchez allowed this collapse?"
-Worth pushing back on: Yes — the creator's claim that Chelsea were "the better team" is partially contradicted by PSG's clinical finishing (8/9 shots on target) and their ability to score when it mattered; PSG's dominance late in the game (especially Kvaratskhelia's two goals) suggests Chelsea's advantage was statistical (xG) but not strategic (game management).
+Key point 3: "This is a manager that conceded a draw to lead United from 2-0 up at home. This is a manager that has conceded a draw to Burnley at Stanford Bridge from a winning position with one minute to go." — Historical pattern of Rosenior bottling leads.
 
-Unique angle: Heavy focus on Renato Sanchez's substitution timing and choice of personnel (Delap's quality) as the root cause, not just Jørgensen's error; also references David de Gea's pre-match warning as a predictable failure of squad management.
+Key point 4: "In the history of the Champions League, I think only four teams have ever managed to overturn a three-goal deficit. It's impossible. It's it is impossible... this team, we are so young. We're so naive. We're so foolish. We're so predictable."
 
-Similar to your potential angle: Yes — this is squarely focused on Jørgensen's error + manager accountability, which aligns with your strongest angle.
+Key point 5: On the ownership model — "the ambition isn't to compete. The ambition is to build a profitable brand" — connects loss to structural Chelsea ownership problem.
 
-═══════════════════════
-FROM YOUTUBE — KEPljdAaJn4
-═══════════════════════
-Hook they used: "PSG 5, Chelsea 2. Then the expected goals from PSG, I've been told, is correct at 0.87. Oh wow." [followed by tactical analysis with guest]
-Hook strength: Weak — opens with stat recitation rather than a take; relies on discussion format rather than strong opinion to draw viewers.
+Closing question: Implicitly asks whether Chelsea will ever win European trophies again or remain "valiant losers."
 
-Main argument: 5-2 scoreline is misleading—Chelsea played well for the first hour and were genuinely competitive until Jørgensen's error at 2-2 (74'), but poor game management and Renato Sanchez's passive tactical approach post-error (not shutting shop at 3-2) allowed PSG to run riot. Chelsea's performance was better than the scoreline suggests, but the lack of experience/composure at a critical moment sealed them out.
-
-Key point 1: "5-2 doesn't really paint a clear picture as to what this game was and how good Chelsea was for long periods of time" — Multiple speakers emphasize xG gap (Chelsea 1.53, PSG 0.87) shows Chelsea dominated play but failed execution.
-
-Key point 2: "Up until the big mistake from Jorgensson, Chelsea we're very much in this picture" — The error removed Chelsea from contention; one guest argues Chelsea is "more likely to turn this around than Manchester City [vs Real Madrid]" because they played better for longer and only one catastrophic error derailed them.
-
-Key point 3: "Chelsea were unable to take advantage of those chances much like Dembele was able to take advantage of his opportunity" — PSG were clinical; Chelsea wasteful. The difference in mentality/experience.
-
-Key point 4: At 3-2, Chelsea "didn't put the handbrake on, shut up shop" — should have consolidated and taken the 3-2 away result back to Stamford Bridge, but instead kept attacking and got punished twice (Kvaratskhelia 86', 90+4').
-
-Closing question they used: "Jurgen, this game was so frantic... how difficult is it to change everything, put the handbrake on, shut up shop?" — Asking whether experience/composure at 3-2 could have salvaged the tie.
-
-Worth pushing back on: Partially — While the "Chelsea played well" take is statistically supported by xG, the notion that Chelsea is "more likely to overturn this tie than City vs Real Madrid" ignores PSG's clinical execution and Kvaratskhelia's form (8.9 rating, 2 goals). Chelsea will need a near-perfect performance + PSG injury/regression, whereas City at least have home advantage.
-
-Unique angle: Detailed xG-based analysis showing Chelsea's statistical dominance despite the scoreline; also raises the question of whether Chelsea's better performance makes a comeback *more* likely (vs City's collapse suggesting they were just bad).
-
-Similar to your potential angle: Yes — focuses on the Jørgensen error as the inflection point, but adds nuance that Chelsea's overall play was better, which some creators haven't emphasized.
+Unique angle: Directly compares Rosenior to Luis Enrique ("the best manager in the world against the worst manager in the world") and argues this wasn't just one bad night but evidence of structural managerial and ownership failure at Chelsea. Also uniquely references David de Gea's warning about young inexperienced keepers in away Champions League atmospheres (re: Kinsky at Atletico) as direct parallel to Jörgensen at PSG.
 
 ═══════════════════════
-FROM MANUAL — cfcchris (TWITTER/X)
+FROM YOUTUBE — MAH — F***ED AROUND AND FOUND OUT. | PSG 5-2 Chelsea Reaction
 ═══════════════════════
-Source type: Tweet
-Main argument: Jørgensen's performance reveals a deeper pattern of lowered standards at Chelsea; each mediocre keeper performance (Jørgensen now, Sanchez before) normalizes worse behavior, making poor signings like Liam Delap acceptable by comparison.
+Hook: "Wow. Wow. We... but what we don't want to do in this moment is be performative. We do not want to overreact. God forbid we were negative in this moment."
 
-Key fact 1: Sanchez had "similar brain farts" at Old Trafford and Arsenal, establishing a pattern of goalkeeper errors in high-pressure moments.
+Hook strength: Weak — Relies on sarcasm and tone rather than a direct hook; takes too long to establish the core emotional reaction.
 
-Key fact 2: "Clearlake snowball effect where standards drop little by little" — The ownership/recruitment team's repeated goalkeeper mistakes (Robert Sanchez, now Jørgensen) suggests systemic failure in goalkeeper scouting/development.
+Main argument: Chelsea lost because Rosenior prioritized playing out from the back (passing) against PSG's elite press instead of practical away-day football; the goalkeeper choice enabled this naive approach and both decisions reflect a manager who doesn't understand Champions League away mentality.
 
-Key quote: "The worst part about this Jorgensen performance is Sanchez now has fans. It's a Clearlake snowball effect where standards drop little by little every time."
+Key point 1: "We need to play Sanchez in this game. Stop all of your playing out from the back, breaking lines, fancy footwork. This is this is what we cared about more than saving shots, than collecting crosses."
 
-Worth referencing on camera: Yes — This shifts the narrative from "Jørgensen made one error" to "Chelsea's keeper recruitment and standards are systematically broken," which is an ownership/planning problem, not just a player problem. This is a valuable angle competitors may miss.
+Key point 2: PSG's press is too good and Chelsea defenders aren't good enough on the ball to match them — "our guys defensively on the ball are not good enough to go up against that press. So, just don't invite the pressure."
+
+Key point 3: "Naive, immature, and arrogant. That's what it gets you, a 5-2 at PSG" — Rosenior's tactical stubbornness rather than individual errors is the root cause.
+
+Key point 4: On Jörgensen specifically — "Jorgensson, he's been injured. So everybody thinks now, oh, he's he's nowhere near as bad as we thought... It's not like we were trying to replace him over the summer... we didn't trust this guy to step up and we WANTED MIKE MEGNY ON... EVERYBODY'S JUST FORGOTTEN."
+
+Key point 5: Mocks the "goldfish memory" of fans and media who forgot Sánchez's strong form and good season in one match, allowing Rosenior to drop him without scrutiny.
+
+Key point 6: "Both of our Champions League wins, whether it was 2012... or it was 2021... both campaigns had good defenses... This defense with this side of the draw was never going to get to the end."
+
+Key point 7: "The amount of goals we concede under this manager week in week out is unsustainable... Arsenal three times and now PSG, nah, that don't look good on your resume."
+
+Closing question: Implicitly questions why Rosenior made these decisions and whether the goalkeeper situation will ever be resolved properly.
+
+Unique angle: Uniquely focuses on collective "goldfish memory" — argues that one good performance against Arsenal (where Jörgensen played) wiped away reasonable doubts about him, and fans/media forgot Sánchez's strong season. Also uniquely goes into detailed tactical analysis of why playing out from the back against PSG's press was the core problem, not just the goalkeeper error. Compares this to Club World Cup under Mourinho, where Chelsea had tactical variety.
+
+═══════════════════════
+FROM MANUAL — THE GUARDIAN
+═══════════════════════
+Source type: Article
+
+Main argument: Jörgensen's error was emblematic of a naive tactical approach to Champions League away football; Rosenior's decision to start him for his passing ability backfired when that exact skill cost Chelsea a goal, and his late attacking substitutions worsened the collapse.
+
+Key fact 1: Jörgensen's pass was intercepted by Bradley Barcola at 2-2, leading directly to Vitinha's 3-2 goal — "His pass was intercepted by Bradley Barcola, Kvaratshkelia teed up Vitinha and the midfielder lifted an insouciant lob over Jörgensen."
+
+Key fact 2: Enzo Fernández threw the ball at Jörgensen and remonstrated with him after another poor clearance in the 74th minute — showing internal team reaction to the error.
+
+Key fact 3: Rosenior made an attacking change late (Garnacho for Gusto at 88') when Chelsea were already down 4-2, which destabilized their shape and allowed Kvaratskhelia to score the 5th goal in added time.
+
+Key fact 4: Rosenior turned to Jörgensen specifically for his passing ability, creating the irony that this exact strength became the fatal weakness — "There was irony in Rosenior turning to Jörgensen because of his passing ability."
+
+Key fact 5: Dropping Robert Sánchez (whose direct kicking was crucial in Chelsea's Club World Cup win over PSG) created a no-win situation for both goalkeepers — "By making the change, the danger is Rosenior has undermined both of his goalkeepers. Sánchez's confidence will be hit by confirmation he is no longer Chelsea's No 1 while Jörgensen must recover from unravelling in the biggest game of his career."
+
+Key fact 6: Chelsea had a 3rd goal ruled out for tight offside, and "A 3-2 defeat would not have been the worst result... It did not even feel insurmountable when Kvaratshkelia whipped in the fourth goal in the 86th minute."
+
+Key fact 7: PSG were "oddly vulnerable" with space behind their full-backs and Marquinhos struggling in central defence, suggesting Chelsea's higher xG (1.57 vs 0.9) accurately reflected a better overall performance.
+
+Key quote: "For all that Liam Rosenior was never going to do an Igor Tudor and hook his goalkeeper, the embarrassment was vast."
 
 ═══════════════════════
 FOOTBALL CONTEXT
 ═══════════════════════
-Manager problem or ownership problem: Both — Renato Sanchez made catastrophic substitutions (Palmer/Pedro off, Delap on) at the critical moment, AND Chelsea's keeper recruitment (Jørgensen, Robert Sanchez before him) reflects poor squad planning by Clearlake Capital's ownership.
+Manager or ownership problem: Both — Rosenior made the goalkeeper selection and substitution decisions tactically, but the ownership model's focus on "building a profitable brand" (per Rory Jennings) rather than competing at elite level is the structural issue; Rosenior is a symptom of a club that prioritizes youth development/resale value over European success.
 
-One game issue or pattern: Pattern — Jørgensen is the second Chelsea keeper in 18 months to have a high-profile error in a major competition (Robert Sanchez at Old Trafford, Arsenal); suggests deeper goalkeeper scouting/development problems, not one bad night.
+One game or pattern: Pattern — Rory Jennings cites Rosenior bottling 2-0 leads vs Manchester United at home and drawing 2-2 vs Burnley at Stamford Bridge with one minute left; MAH cites Arsenal losses and inability to manage big games; the 5-2 is the worst outcome but the pattern of losing control in high-stakes matches exists.
 
-Transfer window relevance: Yes — Jørgensen's performance (2.9 rating, single catastrophic error) reopens debate about Chelsea's summer 2025 recruitment; Liam Delap's appearance in such a crucial tie signals Chelsea's lack of elite forward depth.
+Competition stakes: Knockout — This is a Champions League Round of 16 first leg tie; Chelsea are now 3-0 down before the second leg, making progression mathematically possible but psychologically impossible (only 4 teams in Champions League history have overturned 3-goal deficits).
 
-Historical context: Chelsea last conceded 5 away from home in Europe during a Barcelona loss ~2010; this is a generational regression moment for the club's European standard.
+Manager situation: Under pressure — Rosenior has been criticized for substitutions, goalkeeper selection, and tactical inflexibility; this loss exposes weaknesses that were already questioned in prior matches, though no immediate sacking appears imminent based on sources.
 
-Manager situation: Under pressure — Renato Sanchez has now presided over draw vs Leeds Utd from 2-0 up, draw vs Burnley from winning position with 1 min left (as referenced in YouTube transcript); tonight's substitution choices (bringing on Delap, removing Palmer/Pedro) add to mounting criticism of his tactical judgment in clutch moments.
-
-Competition stakes: Effectively knocked out — While 3-goal deficit is theoretically overturnable (4 teams in CL history have done it), the YouTube creator notes Chelsea "are so young, we're so naive, we're so foolish, we're so predictable"; pragmatically, tie is over unless Chelsea perform at absolute peak + PSG collapse.
+Transfer angle: The Liam Delap signing (brought on at 83' as a substitute) is described as "one of the worst signings Chelsea have ever made" and "barely a championship striker," indicating a deeper squad quality problem beyond this match.
 
 ═══════════════════════
 CREATOR HOOKS RANKED
 ═══════════════════════
-1. y5w3nTCeKZc — "What an absolute abject failure of a night. Chelsea are out of the European Cup. It is over." — Strong
-2. KEPljdAaJn4 — "PSG 5, Chelsea 2. Then the expected goals from PSG, I've been told, is correct at 0.87. Oh wow." — Weak
+1. Rory Jennings — "What an absolute abject failure of a night. Chelsea are out of the European Cup. It is over. There is no hope. There is no spirit. It is impossible for us to go through." — Strong
+
+2. MAH — "Wow. Wow. We... but what we don't want to do in this moment is be performative. We do not want to overreact." — Weak
 
 ═══════════════════════
 ANGLE GAPS
 ═══════════════════════
-What other creators have NOT covered that you could own:
-1. **Clearlake's goalkeeper recruitment as a systemic failure** — While all creators blame Jørgensen's error, none have connected it to Robert Sanchez's earlier mistakes and framed this as an ownership/data problem, not just player execution; this is a "bigger than one game" angle.
+Angles other creators have NOT covered that you could own:
 
-2. **Renato Sanchez's pattern of catastrophic substitutions in high-pressure moments** — Creators mention the Palmer/Pedro/Delap decisions tonight, but don't contextualize this within his history (Leeds 2-0 meltdown, Burnley 1-min collapse); framing it as "manager who bottles clutch moments" is untouched.
+1. The "goldfish memory" angle — Why did one good performance vs Arsenal (a significantly weaker team) erase reasonable concerns about Jörgensen that Chelsea had all summer? This connects to broader fan gaslighting and media recency bias affecting manager decision-making.
 
-3. **Chelsea's xG advantage (1.53 vs 0.87) but PSG clinical execution as the real tale** — One creator touches this, but opportunity to own the "Chelsea created better chances but lacked the mentality of PSG" narrative with tactical breakdown (when/where Chelsea wasted chances, when PSG executed).
+2. Rosenior's 2-0 lead bottling pattern across multiple competitions — Jennings cites Manchester United and Burnley; you could research whether this is systematic pressure management failure or coincidence, and whether it predicts his future at Chelsea.
 
-4. **David de Gea's warning about young keepers in away Champions League games was literally predicted this exact scenario 24 hours earlier** — No creator has used de Gea's pre-match tweet as a framing device for "why didn't Chelsea listen?" angle; strong predictive/narrative hook.
+3. PSG's actual vulnerability as European "holders" — The Guardian notes PSG were "oddly vulnerable" with space behind full-backs and Marquinhos struggling; despite the 5-2 scoreline, this was a winnable game for Chelsea if tactical setup differed. Why did no one highlight that Chelsea could have had 4-5 goals with better finishing/decision-making?
 
-5. **The tie isn't over (statistically) but is over (realistically) — and why Chelsea fans need to hear that** — Creators avoid the harsh truth that while 3-goal comebacks exist, Chelsea's youth + Delap-tier recruitment + Renato's decisions make it mathematically impossible; could own the "time to look ahead" angle with empathy.
+4. The ownership-structure angle — Rory Jennings explicitly states Todd Boehly's ownership model prioritizes "building a profitable brand" over competing; this loss may force the first real conversation about whether Chelsea's current structure (youth academy focus, high turnover, no aging stars) is fundamentally incompatible with European trophy-winning.
+
+5. Rosenior vs. Luis Enrique as a manager gap — Not just tactics but personnel management: How did Enrique tell Mbappé

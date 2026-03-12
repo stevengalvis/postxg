@@ -80,6 +80,12 @@ Now Amorim has the same squad and no excuses left.
 The rebuild is going to take longer than anyone wants to admit."
 That is 45 words broken into lines. Match that length and format exactly using the actual research topic.
 
+WORD COUNT ENFORCEMENT:
+Count every single word in your script before outputting it.
+If the count exceeds 45 words you must cut it down before outputting.
+Do not output the script until the word count is 45 or under.
+This is a hard limit with no exceptions.
+
 TITLE RULES:
 - Maximum 6 words. Count every word. If it is 7 or more words it is wrong.
 - Punchy headline style, not a full sentence
