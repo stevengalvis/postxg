@@ -4,6 +4,7 @@ import sys
 import signal
 import requests
 from datetime import date
+import telegram
 from skills.get_grok_news import get_grok_news
 from skills.get_yt_transcripts import get_yt_transcripts
 from skills.extract import extract_research
@@ -281,6 +282,23 @@ def review_extracted():
             print("Research cleared.")
             return False
 
+def send_telegram(message: str):
+    bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+
+    if not all([bot_token, chat_id]):
+        print("\n⚠ Telegram env vars not set — skipping send.")
+        return
+
+    try:
+        import asyncio
+        bot = telegram.Bot(token=bot_token)
+        asyncio.run(bot.send_message(chat_id=chat_id, text=message))
+        print("\n✓ Brief sent to Telegram.")
+    except Exception as e:
+        print(f"\n✗ Telegram send failed: {e}")
+
+
 def write_output(topic: str):
     if not os.path.exists(EXTRACTED_FILE):
         print("No extracted research found.")
@@ -315,6 +333,8 @@ def write_output(topic: str):
     print("\n" + "═" * 60)
     print(output)
     print("═" * 60)
+
+    send_telegram(output)
 
 def run():
     print("\n🎙️  PostXG — Video Research & Brief Generator\n")
