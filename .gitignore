@@ -1,7 +1,5 @@
+CONTEXT.md
 .env
-__pycache__
 *.pyc
+__pycache__
 venv/
-CONTEXT.md
-CONTEXT.md
-CONTEXT.md
