@@ -293,7 +293,11 @@ def send_telegram(message: str):
     try:
         import asyncio
         bot = telegram.Bot(token=bot_token)
-        asyncio.run(bot.send_message(chat_id=chat_id, text=message))
+        chunks = [message[i:i+4000] for i in range(0, len(message), 4000)]
+        async def send_chunks():
+            for chunk in chunks:
+                await bot.send_message(chat_id=chat_id, text=chunk)
+        asyncio.run(send_chunks())
         print("\n✓ Brief sent to Telegram.")
     except Exception as e:
         print(f"\n✗ Telegram send failed: {e}")
