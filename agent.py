@@ -97,18 +97,28 @@ def list_sources() -> list:
         return sources
     with open(RESEARCH_FILE, "r", encoding="utf-8") as f:
         content = f.read()
-    blocks = content.split("═" * 40)
-    for block in blocks:
-        lines = block.strip().split("\n")
+    sep = "═" * 40
+    blocks = content.split(sep)
+    # blocks[0] is the file header; sources are stored as pairs: (metadata_block, content_block)
+    i = 1
+    while i < len(blocks) - 1:
+        meta_block = blocks[i]
+        content_block = blocks[i + 1]
         source_type = ""
         label = ""
-        for line in lines:
+        for line in meta_block.strip().split("\n"):
             if line.startswith("SOURCE:"):
                 source_type = line.replace("SOURCE:", "").strip()
             if line.startswith("LABEL:"):
                 label = line.replace("LABEL:", "").strip()
         if source_type and label:
-            sources.append({"type": source_type, "label": label, "block": block})
+            sources.append({
+                "type": source_type,
+                "label": label,
+                "meta_block": meta_block,
+                "content_block": content_block,
+            })
+        i += 2
     return sources
 
 def remove_sources(indices: list):
@@ -116,9 +126,10 @@ def remove_sources(indices: list):
     to_remove = [sources[i] for i in indices if i < len(sources)]
     with open(RESEARCH_FILE, "r", encoding="utf-8") as f:
         content = f.read()
+    sep = "═" * 40
     for source in to_remove:
-        block_with_dividers = "═" * 40 + "\n" + source["block"].strip() + "\n"
-        content = content.replace(block_with_dividers, "")
+        full_entry = sep + source["meta_block"] + sep + source["content_block"]
+        content = content.replace(full_entry, "")
     with open(RESEARCH_FILE, "w", encoding="utf-8") as f:
         f.write(content)
 
