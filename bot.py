@@ -227,7 +227,23 @@ async def prompt_review(chat_id, bot):
 
 # ── State handlers ────────────────────────────────────────────────
 
+def get_research_summary() -> str:
+    if not os.path.exists(RESEARCH_FILE):
+        return "No research loaded."
+    topic = get_topic_from_header()
+    sources = list_sources()
+    if not topic and not sources:
+        return "No research loaded."
+    parts = []
+    if topic:
+        parts.append(f'"{topic}"')
+    if sources:
+        parts.append(f"{len(sources)} source{'s' if len(sources) != 1 else ''}")
+    return "Research loaded: " + ", ".join(parts)
+
+
 async def handle_start(chat_id, text, session, bot):
+    await send(chat_id, get_research_summary(), bot)
     await prompt_grok(chat_id, bot)
 
 
@@ -235,7 +251,7 @@ async def handle_grok_topic(chat_id, text, session, bot):
     appending = session.get("appending", False)
 
     if text.lower() == "skip":
-        if appending:
+        if appending or read_research():
             await prompt_youtube(chat_id, bot)
         else:
             set_state(chat_id, "TOPIC_LABEL")
