@@ -352,7 +352,7 @@ def write_output(topic: str):
     send_telegram(output)
 
 def run():
-    print("\n🎙️  PostXG — Video Research & Brief Generator\n")
+    print("\n⚽📊  PostXG — Video Research & Brief Generator\n")
 
     header = get_research_header()
 
