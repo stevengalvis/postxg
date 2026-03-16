@@ -278,7 +278,38 @@ if stage == "grok_input":
                 st.session_state.appending = False
                 st.rerun()
         st.divider()
-        st.code(read_research(), language=None, height=400)
+
+        # Clean summary
+        research_date = ""
+        with open(RESEARCH_FILE, "r", encoding="utf-8") as _f:
+            for _line in _f.readlines()[:5]:
+                if _line.startswith("DATE:"):
+                    research_date = _line.replace("DATE:", "").strip()
+                    break
+
+        st.markdown(f"**Topic:** {existing_topic}")
+        if research_date:
+            st.markdown(f"**Date:** {research_date}")
+
+        grok_s = [s for s in existing_sources if s["type"] == "GROK_SEARCH"]
+        yt_s   = [s for s in existing_sources if s["type"] == "YOUTUBE_TRANSCRIPT"]
+        manual_s = [s for s in existing_sources if s["type"] not in ("GROK_SEARCH", "YOUTUBE_TRANSCRIPT")]
+
+        if grok_s:
+            st.markdown("**Grok searches:**")
+            for s in grok_s:
+                st.markdown(f"- {s['label'].removeprefix('Grok search — ')}")
+        if yt_s:
+            st.markdown("**YouTube videos:**")
+            for s in yt_s:
+                st.markdown(f"- {s['label'].removeprefix('YouTube — ')}")
+        if manual_s:
+            st.markdown("**Manual sources:**")
+            for s in manual_s:
+                st.markdown(f"- {s['label']}")
+
+        with st.expander("View raw research"):
+            st.code(read_research(), language=None, height=400)
         st.stop()
 
     if existing_topic and not existing_sources and not st.session_state.appending:
