@@ -7,10 +7,15 @@ import requests
 import streamlit as st
 from datetime import date
 
-from skills.get_grok_news import get_grok_news
-from skills.get_yt_transcripts import get_yt_transcripts
-from skills.extract import extract_research
-from skills.generate_brief import generate_brief
+try:
+    from skills.get_grok_news import get_grok_news
+    from skills.get_yt_transcripts import get_yt_transcripts
+    from skills.extract import extract_research
+    from skills.generate_brief import generate_brief
+except ImportError as _e:
+    import streamlit as st
+    st.error(f"Failed to import pipeline skills: {_e}")
+    st.stop()
 
 RESEARCH_FILE = "research/latest.txt"
 EXTRACTED_FILE = "research/extracted.txt"
@@ -260,7 +265,7 @@ if stage == "grok_input":
     existing_topic = get_topic_from_header()
     existing_sources = list_sources()
 
-    if existing_topic and not st.session_state.appending:
+    if existing_topic and existing_sources and not st.session_state.appending:
         st.info(f"**Active research:** \"{existing_topic}\" — {len(existing_sources)} source(s).")
         col1, col2 = st.columns(2)
         with col1:
@@ -276,6 +281,9 @@ if stage == "grok_input":
         st.code(read_research(), language=None, height=400)
         st.stop()
 
+    if existing_topic and not existing_sources and not st.session_state.appending:
+        st.info("No active research — start a new topic.")
+
     st.subheader("Grok Research")
     st.caption(
         "Tips: All topics — top tweets ranked by engagement with exact likes/views/replies, pundit reactions\n\n"
@@ -283,36 +291,39 @@ if stage == "grok_input":
     )
 
     with st.form("grok_form"):
-        topic_input = st.text_input(
-            "What do you want to research?",
-            placeholder="Leave blank to skip Grok and go straight to YouTube/manual sources",
+        topic_input = st.text_area(
+            "Topic",
+            placeholder="e.g. Arsenal vs Man City, Salah contract, Klopp return...",
+            label_visibility="collapsed",
+            height=150,
         )
-        submitted = st.form_submit_button("Search Grok" if topic_input else "Skip Grok →")
+        submitted = st.form_submit_button("Search Grok", use_container_width=True)
 
-    if submitted:
-        if topic_input.strip():
-            with st.spinner("Searching Grok..."):
-                try:
-                    existing = read_research() if st.session_state.appending else None
-                    if not st.session_state.appending:
-                        clear_research()
-                        set_research_header(topic_input.strip())
-                    result = run_in_thread(get_grok_news, topic_input.strip(), existing)
-                    save_to_research(f"Grok search — {topic_input.strip()}", result, "GROK_SEARCH")
-                    st.session_state.grok_result = result
-                    st.session_state.grok_topic = topic_input.strip()
-                    go_to("grok_review")
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"Grok search failed: {e}")
+    skip_clicked = st.button("Skip →", help="Go straight to YouTube / manual sources")
+
+    if submitted and topic_input.strip():
+        with st.spinner("Searching Grok..."):
+            try:
+                existing = read_research() if st.session_state.appending else None
+                if not st.session_state.appending:
+                    clear_research()
+                    set_research_header(topic_input.strip())
+                result = run_in_thread(get_grok_news, topic_input.strip(), existing)
+                save_to_research(f"Grok search — {topic_input.strip()}", result, "GROK_SEARCH")
+                st.session_state.grok_result = result
+                st.session_state.grok_topic = topic_input.strip()
+                go_to("grok_review")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Grok search failed: {e}")
+
+    if (submitted and not topic_input.strip()) or skip_clicked:
+        if not read_research():
+            st.session_state.stage = "grok_nolabel"
+            st.rerun()
         else:
-            # Skip Grok — ask for topic label if no research exists
-            if not read_research():
-                st.session_state.stage = "grok_nolabel"
-                st.rerun()
-            else:
-                go_to("youtube")
-                st.rerun()
+            go_to("youtube")
+            st.rerun()
 
     grok_sources = [s for s in list_sources() if s["type"] == "GROK_SEARCH"]
     if grok_sources:
@@ -345,9 +356,10 @@ elif stage == "grok_review":
     st.subheader("Grok Results")
 
     with st.form("grok_review_form"):
-        follow_up = st.text_input(
+        follow_up = st.text_area(
             "Search again with a follow-up query? (leave blank to continue)",
             placeholder="Leave blank if happy with results",
+            height=150,
         )
         col1, col2 = st.columns(2)
         with col1:
