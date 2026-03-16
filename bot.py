@@ -4,8 +4,6 @@ import asyncio
 import requests
 from datetime import date
 from dotenv import load_dotenv
-from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
 
 load_dotenv()
 
@@ -485,7 +483,7 @@ HANDLERS = {
 
 # ── Entry point ───────────────────────────────────────────────────
 
-async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def handle_message(update: "Update", context: "ContextTypes.DEFAULT_TYPE"):
     chat_id = str(update.effective_chat.id)
     text = (update.message.text or "").strip()
 
@@ -510,6 +508,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 if __name__ == "__main__":
+    from telegram import Update
+    from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
     application = ApplicationBuilder().token(BOT_TOKEN).build()
     application.add_handler(MessageHandler(filters.TEXT, handle_message))
     print("PostXG bot polling...")
