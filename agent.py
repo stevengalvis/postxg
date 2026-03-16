@@ -4,7 +4,6 @@ import sys
 import signal
 import requests
 from datetime import date
-import telegram
 from skills.get_grok_news import get_grok_news
 from skills.get_yt_transcripts import get_yt_transcripts
 from skills.extract import extract_research
@@ -294,6 +293,7 @@ def review_extracted():
             return False
 
 def send_telegram(message: str):
+    import telegram
     bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID")
 
