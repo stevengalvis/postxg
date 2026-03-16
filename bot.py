@@ -194,7 +194,7 @@ async def prompt_manual_ask(chat_id, bot):
     await send(chat_id, "Add article, tweet, Reddit post or other content? (y/n)", bot)
 
 
-async def run_extraction(chat_id, bot):
+async def run_extraction(chat_id, bot, goto_direction=False):
     research = read_research()
     if not research:
         await send(chat_id, "No research found. Starting over.", bot)
@@ -206,9 +206,12 @@ async def run_extraction(chat_id, bot):
         with open(EXTRACTED_FILE, "w", encoding="utf-8") as f:
             f.write(extracted)
         await send(chat_id, "═" * 40 + "\nEXTRACTED RESEARCH\n" + "═" * 40 + "\n\n" + extracted, bot)
-        await prompt_review(chat_id, bot)
     except Exception as e:
         await send(chat_id, f"Extraction failed: {e}", bot)
+    if goto_direction:
+        set_state(chat_id, "DIRECTION")
+        await send(chat_id, "What do you want to say about this?", bot)
+    else:
         await prompt_review(chat_id, bot)
 
 
@@ -342,7 +345,7 @@ async def handle_manual_ask(chat_id, text, session, bot):
                    "[5] Other",
                    bot)
     else:
-        await run_extraction(chat_id, bot)
+        await prompt_review(chat_id, bot)
 
 
 async def handle_manual_type(chat_id, text, session, bot):
@@ -379,12 +382,8 @@ async def handle_manual_content(chat_id, text, session, bot):
 
 async def handle_review(chat_id, text, session, bot):
     if text.lower() in ["1", "yes", "happy"]:
-        if not os.path.exists(EXTRACTED_FILE):
-            await send(chat_id, "No extracted research found. Re-extracting...", bot)
-            await run_extraction(chat_id, bot)
-            return
-        set_state(chat_id, "DIRECTION")
-        await send(chat_id, "What do you want to say about this?", bot)
+        await run_extraction(chat_id, bot, goto_direction=True)
+        return
 
     elif text == "2":
         session["appending"] = True
@@ -501,6 +500,14 @@ async def handle_message(update: "Update", context: "ContextTypes.DEFAULT_TYPE")
         sessions[chat_id] = {"state": "START"}
         session = sessions[chat_id]
         await send(chat_id, "PostXG ready.", context.bot)
+
+    # /reset resets state without clearing research files
+    if text == "/reset":
+        sessions[chat_id] = {"state": "START"}
+        session = sessions[chat_id]
+        await send(chat_id, get_research_summary() + "\nState reset. Research files kept.", context.bot)
+        await prompt_grok(chat_id, context.bot)
+        return
 
     state = session.get("state", "START")
     handler = HANDLERS.get(state, handle_start)
