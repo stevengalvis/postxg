@@ -271,26 +271,30 @@ async def handle_grok_topic(chat_id, text, session, bot):
         save_to_research(f"Grok search — {text}", result, "GROK_SEARCH")
         await send(chat_id, "═" * 40 + "\nGROK RESULTS\n" + "═" * 40 + "\n\n" + result, bot)
         set_state(chat_id, "GROK_CONFIRM")
-        await send(chat_id, "Happy with Grok research?\n[1] Yes continue\n[2] Search again (type follow-up query)", bot)
+        await send(chat_id, "Happy with Grok research?\n[1] Yes continue\n[2] Search again", bot)
     except Exception as e:
         await send(chat_id, f"Grok search failed: {e}", bot)
         await prompt_youtube(chat_id, bot)
 
 
 async def handle_grok_confirm(chat_id, text, session, bot):
-    if text.lower() in ["1", "yes"]:
-        await prompt_youtube(chat_id, bot)
+    if text == "2":
+        set_state(chat_id, "GROK_SEARCH_QUERY")
+        await send(chat_id, "What do you want to search?", bot)
         return
+    # Everything else continues
+    await prompt_youtube(chat_id, bot)
 
-    # Anything else is a follow-up search query
+
+async def handle_grok_search_query(chat_id, text, session, bot):
     existing = read_research()
-    await send(chat_id, "Searching Grok again...", bot)
+    await send(chat_id, "Searching Grok...", bot)
     try:
         result = await asyncio.to_thread(get_grok_news, text, existing)
         save_to_research(f"Grok search — {text}", result, "GROK_SEARCH")
-        await send(chat_id, "═" * 40 + "\nGROK FOLLOW UP\n" + "═" * 40 + "\n\n" + result, bot)
+        await send(chat_id, "═" * 40 + "\nGROK RESULTS\n" + "═" * 40 + "\n\n" + result, bot)
         set_state(chat_id, "GROK_CONFIRM")
-        await send(chat_id, "Happy with Grok research?\n[1] Yes continue\n[2] Search again (type follow-up query)", bot)
+        await send(chat_id, "Happy with Grok research?\n[1] Yes continue\n[2] Search again", bot)
     except Exception as e:
         await send(chat_id, f"Grok search failed: {e}", bot)
         await prompt_youtube(chat_id, bot)
@@ -419,7 +423,10 @@ async def handle_remove_source(chat_id, text, session, bot):
 
 
 async def handle_direction(chat_id, text, session, bot):
-    session["direction"] = text
+    if text.lower() == "skip":
+        session["direction"] = ""
+    else:
+        session["direction"] = text
     set_state(chat_id, "FORMAT")
     await send(chat_id, "Long form, short, or both?\n[1] Long form\n[2] Short\n[3] Both", bot)
 
@@ -464,10 +471,11 @@ async def handle_format(chat_id, text, session, bot):
 # ── Dispatch ──────────────────────────────────────────────────────
 
 HANDLERS = {
-    "START":          handle_start,
-    "GROK_TOPIC":     handle_grok_topic,
-    "GROK_CONFIRM":   handle_grok_confirm,
-    "TOPIC_LABEL":    handle_topic_label,
+    "START":             handle_start,
+    "GROK_TOPIC":        handle_grok_topic,
+    "GROK_CONFIRM":      handle_grok_confirm,
+    "GROK_SEARCH_QUERY": handle_grok_search_query,
+    "TOPIC_LABEL":       handle_topic_label,
     "YOUTUBE":        handle_youtube,
     "MANUAL_ASK":     handle_manual_ask,
     "MANUAL_TYPE":    handle_manual_type,
@@ -501,11 +509,11 @@ async def handle_message(update: "Update", context: "ContextTypes.DEFAULT_TYPE")
         session = sessions[chat_id]
         await send(chat_id, "PostXG ready.", context.bot)
 
-    # /reset resets state without clearing research files
-    if text == "/reset":
+    # /reset or "restart" resets state without clearing research files
+    if text in ("/reset", "restart"):
         sessions[chat_id] = {"state": "START"}
         session = sessions[chat_id]
-        await send(chat_id, get_research_summary() + "\nState reset. Research files kept.", context.bot)
+        await send(chat_id, get_research_summary() + "\nRestarting. Research files kept.", context.bot)
         await prompt_grok(chat_id, context.bot)
         return
 
