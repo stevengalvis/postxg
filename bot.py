@@ -507,10 +507,16 @@ async def handle_message(update: "Update", context: "ContextTypes.DEFAULT_TYPE")
     await handler(chat_id, text, session, context.bot)
 
 
-if __name__ == "__main__":
+def main():
+    if not BOT_TOKEN:
+        raise SystemExit("TELEGRAM_BOT_TOKEN not set — bot cannot start.")
     from telegram import Update
     from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
     application = ApplicationBuilder().token(BOT_TOKEN).build()
     application.add_handler(MessageHandler(filters.TEXT, handle_message))
     print("PostXG bot polling...")
     application.run_polling()
+
+
+if __name__ == "__main__":
+    main()
