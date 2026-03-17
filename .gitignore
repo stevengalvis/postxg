@@ -3,5 +3,5 @@ CONTEXT.md
 *.pyc
 __pycache__
 venv/
-latest.txt
-extracted.txt
+research/latest.txt
+research/extracted.txt
