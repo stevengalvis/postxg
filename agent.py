@@ -8,9 +8,19 @@ from skills.get_grok_news import get_grok_news
 from skills.get_yt_transcripts import get_yt_transcripts
 from skills.extract import extract_research
 from skills.generate_brief import generate_brief
+from research_store import (
+    RESEARCH_FILE,
+    EXTRACTED_FILE,
+    save_to_research,
+    read_research,
+    get_research_header,
+    set_research_header,
+    clear_research,
+    list_sources,
+    remove_sources,
+    get_strongest_angle
+)
 
-RESEARCH_FILE = "research/latest.txt"
-EXTRACTED_FILE = "research/extracted.txt"
 
 def handle_exit(sig, frame):
     print("\n\nExiting PostXG.")
@@ -47,90 +57,6 @@ def extract_video_id(input_str: str) -> str:
             return match.group(1)
     return input_str
 
-def save_to_research(label: str, content: str, source_type: str = "UNKNOWN"):
-    os.makedirs("research", exist_ok=True)
-    with open(RESEARCH_FILE, "a", encoding="utf-8") as f:
-        f.write(f"\n{'═' * 40}\n")
-        f.write(f"SOURCE: {source_type}\n")
-        f.write(f"LABEL: {label}\n")
-        f.write(f"{'═' * 40}\n")
-        f.write(content)
-        f.write("\n")
-
-def read_research() -> str:
-    if not os.path.exists(RESEARCH_FILE):
-        return ""
-    with open(RESEARCH_FILE, "r", encoding="utf-8") as f:
-        return f.read()
-
-def get_research_header() -> dict:
-    if not os.path.exists(RESEARCH_FILE):
-        return {}
-    with open(RESEARCH_FILE, "r", encoding="utf-8") as f:
-        lines = f.readlines()
-    header = {}
-    for line in lines[:5]:
-        if line.startswith("TOPIC:"):
-            header["topic"] = line.replace("TOPIC:", "").strip()
-        if line.startswith("DATE:"):
-            header["date"] = line.replace("DATE:", "").strip()
-    return header
-
-def set_research_header(topic: str):
-    os.makedirs("research", exist_ok=True)
-    existing = read_research()
-    with open(RESEARCH_FILE, "w", encoding="utf-8") as f:
-        f.write(f"TOPIC: {topic}\n")
-        f.write(f"DATE: {date.today()}\n")
-        f.write(existing)
-
-def clear_research():
-    if os.path.exists(RESEARCH_FILE):
-        os.remove(RESEARCH_FILE)
-    if os.path.exists(EXTRACTED_FILE):
-        os.remove(EXTRACTED_FILE)
-
-def list_sources() -> list:
-    sources = []
-    if not os.path.exists(RESEARCH_FILE):
-        return sources
-    with open(RESEARCH_FILE, "r", encoding="utf-8") as f:
-        content = f.read()
-    sep = "═" * 40
-    blocks = content.split(sep)
-    # blocks[0] is the file header; sources are stored as pairs: (metadata_block, content_block)
-    i = 1
-    while i < len(blocks) - 1:
-        meta_block = blocks[i]
-        content_block = blocks[i + 1]
-        source_type = ""
-        label = ""
-        for line in meta_block.strip().split("\n"):
-            if line.startswith("SOURCE:"):
-                source_type = line.replace("SOURCE:", "").strip()
-            if line.startswith("LABEL:"):
-                label = line.replace("LABEL:", "").strip()
-        if source_type and label:
-            sources.append({
-                "type": source_type,
-                "label": label,
-                "meta_block": meta_block,
-                "content_block": content_block,
-            })
-        i += 2
-    return sources
-
-def remove_sources(indices: list):
-    sources = list_sources()
-    to_remove = [sources[i] for i in indices if i < len(sources)]
-    with open(RESEARCH_FILE, "r", encoding="utf-8") as f:
-        content = f.read()
-    sep = "═" * 40
-    for source in to_remove:
-        full_entry = sep + source["meta_block"] + sep + source["content_block"]
-        content = content.replace(full_entry, "")
-    with open(RESEARCH_FILE, "w", encoding="utf-8") as f:
-        f.write(content)
 
 def collect_grok(topic: str, appending: bool = False):
     if not appending:
@@ -235,15 +161,7 @@ def collect_research(appending: bool = False):
     collect_transcripts()
     collect_manual()
 
-def get_strongest_angle() -> str:
-    if not os.path.exists(EXTRACTED_FILE):
-        return ""
-    with open(EXTRACTED_FILE, "r", encoding="utf-8") as f:
-        content = f.read()
-    for line in content.split("\n"):
-        if line.startswith("Strongest angle:"):
-            return line.replace("Strongest angle:", "").strip()
-    return ""
+
 
 def review_extracted():
     while True:
@@ -280,10 +198,10 @@ def review_extracted():
                 print("No sources found.")
                 continue
             print("\nCurrent sources:")
-            for i, s in enumerate(sources):
-                print(f"[{i+1}] {s['type']} — {s['label']}")
+            for s in sources:
+                print(f"[{s['index']}] {s['source']} - {s['label']}")
             to_remove = input("\nWhich sources to remove? (enter numbers separated by spaces)\n> ").strip()
-            indices = [int(x) - 1 for x in to_remove.split() if x.isdigit()]
+            indices = [int(x) for x in to_remove.split() if x.isdigit()]
             if indices:
                 remove_sources(indices)
                 print("Removed. Re-extracting...")
