@@ -145,6 +145,8 @@ def extract_research(raw_research: str) -> str:
         }
     )
     data = response.json()
+    if "content" not in data:
+        raise RunTimeError(f"Extract API failed. Response: {data}")
     return data["content"][0]["text"]
 
 if __name__ == "__main__":

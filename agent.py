@@ -8,6 +8,7 @@ from skills.get_grok_news import get_grok_news
 from skills.get_yt_transcripts import get_yt_transcripts
 from skills.extract import extract_research
 from skills.generate_brief import generate_brief
+from pipeline import run_extraction_pipeline, run_brief_pipeline, run_grok_research_pipeline
 from research_store import (
     RESEARCH_FILE,
     EXTRACTED_FILE,
@@ -62,9 +63,7 @@ def collect_grok(topic: str, appending: bool = False):
     if not appending:
         clear_research()
         set_research_header(topic)
-    existing = read_research()
-    print("\n>>> Calling Grok...")
-    result = get_grok_news(topic, context=existing if appending else None)
+    result = run_grok_research_pipeline(topic, appending=appending)
     print("\n" + "═" * 40)
     print("GROK RESULTS")
     print("═" * 40)
@@ -78,9 +77,7 @@ def collect_grok(topic: str, appending: bool = False):
         elif choice in ["2", "no"]:
             follow_up = input("\nWhat else do you want to search?\n> ").strip()
             if follow_up:
-                existing = read_research()
-                print("\n>>> Calling Grok again...")
-                result = get_grok_news(follow_up, context=existing)
+                result = run_grok_research_pipeline(follow_up, appending=True)
                 print("\n" + "═" * 40)
                 print("GROK FOLLOW UP")
                 print("═" * 40)
@@ -165,16 +162,12 @@ def collect_research(appending: bool = False):
 
 def review_extracted():
     while True:
-        research = read_research()
-        if not research:
+        try:
+            print("\n>>> Extracting research...")
+            extracted = run_extraction_pipeline()
+        except ValueError:
             print("\nNo research found.")
             return False
-
-        print("\n>>> Extracting research...")
-        extracted = extract_research(research)
-
-        with open(EXTRACTED_FILE, "w", encoding="utf-8") as f:
-            f.write(extracted)
 
         print("\n" + "═" * 60)
         print("EXTRACTED RESEARCH SUMMARY")
@@ -240,7 +233,7 @@ def write_output(topic: str):
     with open(EXTRACTED_FILE, "r", encoding="utf-8") as f:
         extracted = f.read()
 
-    strongest_angle = get_strongest_angle()
+   
 
     direction = input("\nWhat do you want to say about this?\n> ").strip()
     if not direction:
@@ -255,13 +248,13 @@ def write_output(topic: str):
     }
     fmt = fmt_map.get(fmt_input, "long")
 
-    if strongest_angle:
-        full_direction = f"{direction}\n\nSTRONGEST ANGLE FROM RESEARCH: {strongest_angle}"
-    else:
-        full_direction = direction
-
     print("\n>>> Generating your brief...")
-    output = generate_brief(extracted, full_direction, fmt, topic, fmt)
+    output = run_brief_pipeline(
+        extracted=extracted,
+        direction=direction,
+        fmt=fmt,
+        topic=topic
+    )
 
     print("\n" + "═" * 60)
     print(output)
