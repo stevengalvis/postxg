@@ -10,7 +10,12 @@ def run_extraction_pipeline() -> str:
     if not research:
         raise ValueError("No research found.")
 
-    extracted = extract_research(research)
+    try:
+        extracted = extract_research(research)
+    except Exception as e:
+        print(f"Extraction failed: {e}")
+        print("Retrying extraction once...")
+        extracted = extract_research(research)
 
     with open(EXTRACTED_FILE, "w", encoding="utf-8") as f:
         f.write(extracted)
