@@ -2,7 +2,52 @@ from skills.extract import extract_research
 from skills.generate_brief import generate_brief
 from research_store import read_research, get_strongest_angle, save_to_research, EXTRACTED_FILE
 from skills.get_grok_news import get_grok_news
+from skills.get_yt_transcripts import get_yt_transcripts
 
+
+
+def run_grok_research_pipeline(topic: str, appending: bool = False) -> str:
+    existing = read_research() if appending else None
+
+    result = get_grok_news(topic, context=existing)
+
+    save_to_researc(
+        label=f"Grok search - {topic}",
+        content=result,
+        source_type="GROK_SEARCH",
+    )
+    return result
+
+
+def run_transcript_pipeline(video_ids: list[str]) -> list[dict]:
+    results = []
+
+    for vid in video_ids:
+        try:
+            transcript = get_yt_transcripts([vid])
+
+            if transcript and len(transcript) > 100:
+                results.append({
+                    "video_id": vid,
+                    "transcript": transcript[:10000],
+                    "success": True
+                })
+            else:
+                results.append({
+                    "video_id": vid,
+                    "success": False,
+                    "error": "No transcript"
+                })
+
+        except Exception as e:
+            results.append({
+                "video_id": vid,
+                "success": False,
+                "error": str(e)
+            })
+
+    return results
+    
 
 def run_extraction_pipeline() -> str:
     research = read_research()
@@ -33,14 +78,3 @@ def run_brief_pipeline(extracted: str, direction: str, fmt: str, topic: str) -> 
     return generate_brief(extracted, full_direction, fmt, topic, fmt)
 
 
-def run_grok_research_pipeline(topic: str, appending: bool = False) -> str:
-    existing = read_research() if appending else None
-
-    result = get_grok_news(topic, context=existing)
-
-    save_to_researc(
-        label=f"Grok search - {topic}",
-        content=result,
-        source_type="GROK_SEARCH",
-    )
-    return result

@@ -4,11 +4,7 @@ import sys
 import signal
 import requests
 from datetime import date
-from skills.get_grok_news import get_grok_news
-from skills.get_yt_transcripts import get_yt_transcripts
-from skills.extract import extract_research
-from skills.generate_brief import generate_brief
-from pipeline import run_extraction_pipeline, run_brief_pipeline, run_grok_research_pipeline
+from pipeline import run_extraction_pipeline, run_brief_pipeline, run_grok_research_pipeline, run_transcript_pipeline
 from research_store import (
     RESEARCH_FILE,
     EXTRACTED_FILE,
@@ -91,17 +87,23 @@ def collect_transcripts():
     raw_inputs = video_input.split()
     video_ids = [extract_video_id(v) for v in raw_inputs]
     print("\n>>> Pulling transcripts...")
-    for vid in video_ids:
-        try:
-            transcript = get_yt_transcripts([vid])
-            if transcript and len(transcript) > 100:
-                title = get_video_title(vid)
-                print(f"✓ {title}")
-                save_to_research(f"YouTube — {title}", transcript[:10000], "YOUTUBE_TRANSCRIPT")
-            else:
-                print(f"✗ No transcript found for {vid}")
-        except Exception as e:
-            print(f"✗ Failed for {vid}: {e}")
+    
+    results = run_transcript_pipeline(video_ids)
+
+    for result in results:
+        vid = result["video_id"]
+
+        if result["success"]:
+            title = get_video_title(vid)
+            print(f"✓ {title}")
+            save_to_research(
+                f"Youtube - {title}",
+                result["transcript"],
+                "YOUTUBE_TRANSCRIPT"
+            )
+
+    else:
+        print(f"✗ {vid}: {result.get('error')}")
 
 def collect_manual():
     while True:
