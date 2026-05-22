@@ -63,7 +63,7 @@ def evaluate_brief(
     full result dict including a 'passed' boolean.
 
     Pass threshold:
-        accuracy_score >= 85 AND relevance_score >= 80 AND hallucination_risk != 'high'
+        accuracy_score >= 85 AND relevance_score >= 80 AND hallucination_risk != 'high' AND no flagged claims
 
     Args:
         brief_text: The generated brief to evaluate.
@@ -120,10 +120,14 @@ Check every claim in the brief against the research sources above. Return your e
     except json.JSONDecodeError as e:
         raise Exception(f"evaluate_brief: could not parse JSON from eval response: {e}\nCleaned response:\n{clean_text}") from e
 
+    flagged_claims = scores.get("flagged_claims", [])
+    has_flagged_claims = len(flagged_claims) > 0
+
     passed = (
         scores["accuracy_score"] >= 85
         and scores["relevance_score"] >= 80
         and scores["hallucination_risk"] != "high"
+        and not has_flagged_claims
     )
 
     try:
