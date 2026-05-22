@@ -105,18 +105,23 @@ Check every claim in the brief against the research sources above. Return your e
     tokens_out = response.usage.output_tokens
     eval_cost = (tokens_in * _HAIKU_COST_PER_INPUT_TOKEN) + (tokens_out * _HAIKU_COST_PER_OUTPUT_TOKEN)
 
+    
+    def parse_eval_response(raw_text: str) -> tuple[dict, str]:
+        clean_text = raw_text.strip()
+        
+        if clean_text.startswith("```json"):
+            clean_text = clean_text[7:]
+        if clean_text.startswith("```"):
+            clean_text = clean_text[3:]
+        if clean_text.endswith("```"):
+            clean_text = clean_text[:-3]
+
+        clean_text = clean_text.strip()
+        return json.loads(clean_text.strip()), clean_text
+    
     try:
         # Strip markdown code fences if present
-        clean_text = raw_text.strip()
-        if clean_text.startswith('```json'):
-            clean_text = clean_text[7:]  # Remove ```json
-        if clean_text.startswith('```'):
-            clean_text = clean_text[3:]   # Remove ```
-        if clean_text.endswith('```'):
-            clean_text = clean_text[:-3]  # Remove trailing ```
-        clean_text = clean_text.strip()
-
-        scores = json.loads(clean_text)
+        scores, clean_text = parse_eval_response(raw_text)
     except json.JSONDecodeError as e:
         raise Exception(f"evaluate_brief: could not parse JSON from eval response: {e}\nCleaned response:\n{clean_text}") from e
 
@@ -142,7 +147,7 @@ Check every claim in the brief against the research sources above. Return your e
             relevance_score=scores["relevance_score"],
             hallucination_risk=scores["hallucination_risk"],
             passed=passed,
-            flagged_claims=scores.get("flagged_claims", []),
+            flagged_claims=flagged_claims,
             eval_reasoning=scores.get("eval_reasoning", ""),
         )
     except Exception as e:
@@ -153,7 +158,7 @@ Check every claim in the brief against the research sources above. Return your e
         "accuracy_score": scores["accuracy_score"],
         "relevance_score": scores["relevance_score"],
         "hallucination_risk": scores["hallucination_risk"],
-        "flagged_claims": scores.get("flagged_claims", []),
+        "flagged_claims": flagged_claims,
         "eval_reasoning": scores.get("eval_reasoning", ""),
         "passed": passed,
         "eval_tokens_in": tokens_in,
