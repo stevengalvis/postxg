@@ -1,0 +1,1 @@
+This is content for an AI YouTube channel targeting builders, developers, and product managers interested in Claude Code, LLMs, multi-model pipelines, and production AI systems. Briefs should be technical but accessible. Tone is curious and builder focused. Audience is actively building or wants to build with AI tools.
